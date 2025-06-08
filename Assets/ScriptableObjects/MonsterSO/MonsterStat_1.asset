@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291450e0e1f3ad941b3df60bfdcaf166, type: 3}
   m_Name: MonsterStat_1
   m_EditorClassIdentifier: 
-  damageSO: 10
-  hpSO: 20
-  attackSpeedSO: 1
+  damageSO: 1
+  hpSO: 5
+  attackSpeedSO: 2
   exSO: 1
   goldSO: 1

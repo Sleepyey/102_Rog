@@ -7,6 +7,7 @@ public class PlayerData
     public int hpData;
     public int damageData;
     public float attackSpeedData;
+    public float moveSpeedData;
     public int exData;
     public int ifExData;
     public int goldData;

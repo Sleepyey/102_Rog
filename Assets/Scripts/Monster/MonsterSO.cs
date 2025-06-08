@@ -10,7 +10,8 @@ public class MonsterSO : ScriptableObject
     [Header("Stat")]
     public int damageSO;
     public int hpSO;
-    public int attackSpeedSO;
+    public float attackSpeedSO;
+    public float moveSpeedSO;
     public int exSO;
     public int goldSO;
 }

@@ -10,7 +10,8 @@ public class Monster : MonoBehaviour
     [Header("Monster Stat")]
     public int damage;
     public int hp;
-    public int attackSpeed;
+    public float attackSpeed;
+    public float moveSpeed;
 
     [Header("Drop Stat")]
     public int ex;
