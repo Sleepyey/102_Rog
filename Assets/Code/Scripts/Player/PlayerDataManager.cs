@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class PlayerData
 {
+    public List<string> statData = new List<string>();
+
     public int hpData;
     public int damageData;
     public float attackSpeedData;

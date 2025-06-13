@@ -6,14 +6,17 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Sprite")]
-    [SerializeField] Sprite spriteUp;
-    [SerializeField] Sprite spriteDown;
-    [SerializeField] Sprite spriteLeft;
-    [SerializeField] Sprite spriteRight;
+    [SerializeField] private Sprite spriteUp;
+    [SerializeField] private Sprite spriteDown;
+    [SerializeField] private Sprite spriteLeft;
+    [SerializeField] private Sprite spriteRight;
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI uiGold;
     [SerializeField] private TextMeshProUGUI uiHp;
+
+    [Header("Attack Effect")]
+    public GameObject attackPrefab;
 
     [Header("Stat")]
     public int damage;
@@ -330,6 +333,12 @@ public class Player : MonoBehaviour
             uiHp.text = "♥♥♥♥♥♥♥♥♥♥" + "\n♥♥♥♥♥♥♥♥♥♥" + "\n♥♥♥♥♥♥♥♥♥♥";
         }
     }
+
+    public int GetCurrentDamage()
+    {
+        return damage;
+    }
+    //플레이어가 대미지를 줄 코드 ( 만들 예정 )
 
     // 플레이어 체력 감소
     public void PlayerHpM(int hpDamage)

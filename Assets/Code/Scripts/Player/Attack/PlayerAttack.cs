@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterAttack : MonoBehaviour
+public class PlayerAttack : MonoBehaviour
 {
-    private Monster monster;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -16,13 +14,5 @@ public class MonsterAttack : MonoBehaviour
     void Update()
     {
         
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            monster.PlayerGiveDamage();
-        }
     }
 }

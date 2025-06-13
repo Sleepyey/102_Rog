@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Monster_Attack
+  - Attack
   layers:
   - Default
   - TransparentFX
@@ -41,4 +42,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Bakcground
+    uniqueID: 1655884165
+    locked: 0
+  - name: Character
+    uniqueID: 1910898115
     locked: 0
