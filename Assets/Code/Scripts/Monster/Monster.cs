@@ -41,7 +41,10 @@ public class Monster : MonoBehaviour
     // Update
     void Update()
     {
-        
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void Attack()

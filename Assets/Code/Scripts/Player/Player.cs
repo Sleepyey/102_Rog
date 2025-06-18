@@ -27,6 +27,10 @@ public class Player : MonoBehaviour
     public int ifEx;
     public int gold;
 
+    [Header("Attack Direction")]
+    public float attackMoveX;
+    public float attackMoveY;
+
     Rigidbody2D rb;
     SpriteRenderer sR;
 
@@ -57,6 +61,11 @@ public class Player : MonoBehaviour
 
         velocity = input.normalized * moveSpeed;    // ↖↗↙↘ 대각선 이동
 
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            PlayerAttack();
+        }
+
         if (input.sqrMagnitude > 0.01f)                     // Sprite 를 이동 방향에 따라 변경
         {
             if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
@@ -76,7 +85,7 @@ public class Player : MonoBehaviour
                 {
                     sR.sprite = spriteUp;
                 }
-                else if(input.y < 0)
+                else if (input.y < 0)
                 {
                     sR.sprite = spriteDown;
                 }
@@ -87,6 +96,12 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+    }
+
+    // 현재 골드 표시
+    public void LoadGoldUI()
+    {
+        uiGold.text = $"Gold: {gold}";
     }
 
     // 현재 HP 표시
@@ -332,6 +347,21 @@ public class Player : MonoBehaviour
         {
             uiHp.text = "♥♥♥♥♥♥♥♥♥♥" + "\n♥♥♥♥♥♥♥♥♥♥" + "\n♥♥♥♥♥♥♥♥♥♥";
         }
+    }
+
+    public void PlayerAttack()
+    {
+        Transform playerTransform = transform;
+        GameObject obj = Instantiate(attackPrefab, playerTransform.position, Quaternion.identity);
+
+        PlayerAttack playerAttack = obj.GetComponent<PlayerAttack>();
+        if (playerAttack != null)
+        {
+            playerAttack.Init(damage);
+        }
+
+        attackMoveX = input.x;
+        attackMoveY = input.y;
     }
 
     public int GetCurrentDamage()
