@@ -6,8 +6,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Sprite")]
-    [SerializeField] private Sprite spriteUp;
-    [SerializeField] private Sprite spriteDown;
+    //[SerializeField] private Sprite spriteUp;
+    //[SerializeField] private Sprite spriteDown;
     [SerializeField] private Sprite spriteLeft;
     [SerializeField] private Sprite spriteRight;
 
@@ -54,16 +54,20 @@ public class Player : MonoBehaviour
     // Update
     private void Update()
     {
-        LoadHpUI(); // 현재 HP 표시
+        LoadHpUI();     // 현재 Hp 표시
+        LoadGoldUI();   // 현재 Gold 표시
 
         input.x = Input.GetAxisRaw("Horizontal");   // ←→ or AD Input 받아서 좌우 이동
         input.y = Input.GetAxisRaw("Vertical");     // ↑↓ or WS Input 받아서 상하 이동
 
         velocity = input.normalized * moveSpeed;    // ↖↗↙↘ 대각선 이동
 
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K))            // K 누르면 공격 ( 쿨타임 추가 예정 )
         {
-            PlayerAttack();
+            if (input.x != 0 || input.y != 0)       // 어느 방향이든 움직여야 공격
+            {
+                PlayerAttack();
+            }
         }
 
         if (input.sqrMagnitude > 0.01f)                     // Sprite 를 이동 방향에 따라 변경
@@ -79,17 +83,17 @@ public class Player : MonoBehaviour
                     sR.sprite = spriteLeft;
                 }
             }
-            else
-            {
-                if (input.y > 0)
-                {
-                    sR.sprite = spriteUp;
-                }
-                else if (input.y < 0)
-                {
-                    sR.sprite = spriteDown;
-                }
-            }
+            //else
+            //{
+            //    if (input.y > 0)
+            //    {
+            //        sR.sprite = spriteUp;
+            //    }
+            //    else if (input.y < 0)
+            //    {
+            //        sR.sprite = spriteDown;
+            //    }
+            //}
         }
     }
 
@@ -363,12 +367,6 @@ public class Player : MonoBehaviour
         attackMoveX = input.x;
         attackMoveY = input.y;
     }
-
-    public int GetCurrentDamage()
-    {
-        return damage;
-    }
-    //플레이어가 대미지를 줄 코드 ( 만들 예정 )
 
     // 플레이어 체력 감소
     public void PlayerHpM(int hpDamage)

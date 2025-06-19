@@ -14,8 +14,8 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         Player player = FindObjectOfType<Player>();
-        moveX = player.attackMoveX;
-        moveY = player.attackMoveY;
+        moveX = player.attackMoveX * 0.05f;
+        moveY = player.attackMoveY * 0.05f;
     }
 
     // Update
@@ -40,12 +40,9 @@ public class PlayerAttack : MonoBehaviour
     {
         if (collision.CompareTag("Monster"))
         {
-            Debug.Log("1");
             Monster monster = collision.GetComponent<Monster>();
-            Debug.Log("2");
             if (monster != null)
             {
-                Debug.Log("3");
                 monster.MonsterHpM(damage);
             }
         }
