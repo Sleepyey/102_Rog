@@ -4,24 +4,16 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private float moveX;
-    private float moveY;
-    private float dTime = 4;
+    private float moveSpeed = 10f;
+    private float dTime = 3f;
 
+    private Vector2 moveD;
     private int damage;
-
-    // Start
-    void Start()
-    {
-        Player player = FindObjectOfType<Player>();
-        moveX = player.attackMoveX * 0.05f;
-        moveY = player.attackMoveY * 0.05f;
-    }
 
     // Update
     void Update()
     {
-        transform.Translate(moveX, moveY, 0);
+        transform.Translate(moveD * moveSpeed * Time.deltaTime);
 
         if (dTime > 0)
         {
@@ -32,18 +24,22 @@ public class PlayerAttack : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void Init(int _damage)
+
+    public void Init(int _damage, Vector2 direction)
     {
         damage = _damage;
+        moveD = direction.normalized;
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Monster"))
+        if (collision.CompareTag("Monster") || collision.CompareTag("Boss"))
         {
             Monster monster = collision.GetComponent<Monster>();
             if (monster != null)
             {
                 monster.MonsterHpM(damage);
+                Destroy(gameObject);
             }
         }
     }

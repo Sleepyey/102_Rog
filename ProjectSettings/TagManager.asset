@@ -7,6 +7,8 @@ TagManager:
   - Monster_Attack
   - Attack
   - Monster
+  - Portal_Main
+  - Boss
   layers:
   - Default
   - TransparentFX
